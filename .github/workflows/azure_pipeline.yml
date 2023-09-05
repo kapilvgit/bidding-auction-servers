@@ -9,7 +9,7 @@ on:
 env:
   CONTAINER_REGISTRY: ${{ vars.CONTAINER_REGISTRY }}
   PLATFORM: azure
-  BUILD_FLAVOUR: prod
+  BUILD_FLAVOR: prod
   
 jobs:
   build_and_test_in_docker: 
@@ -25,4 +25,4 @@ jobs:
           password: ${{ secrets.CONTAINER_REGISTRY_ACCESS_TOKEN }}
 
       - name: Build and deploy containers
-        run: ./production/packaging/build_and_test_all_in_docker --verbose --service-path bidding_service --service-path buyer_frontend_service --instance local --platform $(PLATFORM) --no-precommit --azure-image-tag $(BUILD_FLAVOR) --azure-image-repo $(CONTAINER_REGISTRY)  --build-flavor $(BUILD_FLAVOR)
+        run: ./production/packaging/build_and_test_all_in_docker --verbose --service-path bidding_service --service-path buyer_frontend_service --instance local --platform $PLATFORM --no-precommit --azure-image-tag $BUILD_FLAVOR --azure-image-repo $CONTAINER_REGISTRY --build-flavor $BUILD_FLAVOR
